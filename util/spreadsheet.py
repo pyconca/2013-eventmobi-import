@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+"""Helpers for working with Excel spreadsheets."""
 
 import xlwt
 
 
 def write_spreadsheet(data, sheet_name, out_file):
+    """Write a list of lists into a spreadsheet."""
     workbook = xlwt.Workbook()
     worksheet = workbook.add_sheet(sheet_name)
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Produce a spreadsheet-like structure describing the conference schedule."""
 
 import collections
 import time
@@ -52,6 +53,7 @@ FIELDS = collections.OrderedDict([
 
 
 def speaker_names_to_ids(schedule, speakers):
+    """Convert a schedule full of speaker names into one with speaker IDs."""
     schedule_speaker_idx = schedule[0].index("Speakers")
     speaker_id_idx = speakers[0].index("ID*")
     speaker_name_idx = speakers[0].index("Name*")
@@ -72,6 +74,7 @@ def speaker_names_to_ids(schedule, speakers):
 
 
 def get_schedule():
+    """Generate a spreadsheet-like structure with the conference schedule."""
     schedule_req = requests.get(SCHEDULE_URL)
     schedule = schedule_req.json()["schedule"]
     spreadsheet = [[FIELDS[field]["header"] for field in FIELDS.keys()]]

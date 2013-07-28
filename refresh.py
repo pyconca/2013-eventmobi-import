@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Data-Munging for PyConCa 2013 Mobile Application Import."""
 
 import os
 import shutil
@@ -13,6 +14,7 @@ OUTPUT_DIR = os.path.join(os.getcwd(), "out")
 
 
 def main(argv):
+    """Refresh all the data associated with the conference."""
     shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
     os.makedirs(OUTPUT_DIR)
 

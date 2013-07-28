@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Produce a spreadsheet-like structure describing the conference speakers."""
 
 import collections
 import os
@@ -48,6 +49,7 @@ PHOTOS_TMP_DIR = os.path.join(OUTPUT_DIR, "speaker-photos-tmp")
 
 
 def _generate_speaker_photo(photo_url):
+    """Download, crop, and save the photograph of a particular speaker."""
     img_filename = str(random.randint(10000, 99999)) + photo_url.split("/")[-1]
     img = PIL.Image.open(StringIO.StringIO(requests.get(photo_url).content))
     cropped_img = easy_thumbnails.processors.scale_and_crop(
@@ -60,6 +62,12 @@ def _generate_speaker_photo(photo_url):
 
 
 def get_speakers():
+    """
+    Generate a spreadsheet-like structure with conference speaker info.
+
+    Note that, as a side-effect, this also produces a zipped file containing
+    all the speaker photographs.
+    """
     shutil.rmtree(PHOTOS_TMP_DIR, ignore_errors=True)
     os.makedirs(PHOTOS_TMP_DIR)
 
