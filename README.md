@@ -12,6 +12,11 @@ probably not very widely applicable, but the ideas and techniques are likely
 to be similar to what other users might need to do.
 
 
+USAGE
+-----
+Run `refresh.py`, and upload the files found in the new `out` directory.
+
+
 TODO
 ----
 * Get sponsors imported.
