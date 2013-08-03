@@ -17,12 +17,6 @@ USAGE
 Run `refresh.py`, and upload the files found in the new `out` directory.
 
 
-TODO
-----
-* Get sponsors imported.
-* Get "static" info such as track and sponsor level colour associations.
-
-
 HACKS
 -----
 There are several parts of the code that are not particularly nice. You

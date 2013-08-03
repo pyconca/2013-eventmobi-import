@@ -3,7 +3,6 @@
 
 import collections
 import os
-import random
 import shutil
 import StringIO
 
@@ -50,7 +49,7 @@ PHOTOS_TMP_DIR = os.path.join(OUTPUT_DIR, "speaker-photos-tmp")
 
 def _generate_speaker_photo(photo_url):
     """Download, crop, and save the photograph of a particular speaker."""
-    img_filename = str(random.randint(10000, 99999)) + photo_url.split("/")[-1]
+    img_filename = photo_url.split("/")[-1]
     img = PIL.Image.open(StringIO.StringIO(requests.get(photo_url).content))
     cropped_img = easy_thumbnails.processors.scale_and_crop(
         img,
