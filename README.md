@@ -35,7 +35,8 @@ the field should just be added to the data returned from the server.
 To correlate speakers and their talks, we really should be getting speaker
 IDs from the JSON API. Instead, we get their names, and later use the
 `speaker_names_to_ids` function in `components.schedule` to match these names
-up with the IDs from the speakers API.
+up with the IDs from the speakers API. Similar stuff goes on for sponsors
+and the schedule (sponsorship levels and talk tracks, respectively).
 
 Fields that need to be present in the output spreadsheets but which are not
 used are still included in the various `FIELDS` structures, albeit with a
@@ -44,6 +45,11 @@ conversion function that just returns `None`.
 There's an unexpected dependency on Django. This is because we're using the
 `easy-thumbnails` Django application to do speaker photo resizing. It's far
 from ideal to have such a big dependency, but the code works well enough.
+
+80% of the code for handling each type of data is a copy/paste job, with a
+few special cases and tweaks for each one.
+
+Setting the value of OUTPUT_DIR is duplicated a few times across modules.
 
 There are surely plenty more things that you'll consider dirty hacks too.
 
