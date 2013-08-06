@@ -66,9 +66,24 @@ def speaker_names_to_ids(schedule, speakers):
         speaker_ids = []
         for name in speaker_names:
             speaker_id = [row[speaker_id_idx] for row in speakers
-                          if row[speaker_name_idx] == name][0]
+                          if row[speaker_name_idx].upper() == name.upper()][0]
             speaker_ids.append(speaker_id)
         slot[schedule_speaker_idx] = u", ".join(speaker_ids)
+
+    return schedule
+
+
+def track_names_to_ids(schedule, tracks):
+    """Convert a schedule with track names into one with track IDs."""
+    schedule_track_idx = schedule[0].index("Track")
+    track_id_idx = tracks[0].index("ID*")
+    track_name_idx = tracks[0].index("Description*")
+
+    for slot in schedule[1:]:
+        slot[schedule_track_idx] = [
+            track[track_id_idx] for track in tracks
+            if track[track_name_idx].upper() == slot[schedule_track_idx].upper()
+        ][0]
 
     return schedule
 
@@ -92,3 +107,13 @@ def get_schedule():
             "%Y-%m-%d", time.strptime(slot["start"],  "%Y-%m-%dT%H:%M:%S"))
 
     return spreadsheet
+
+def get_tracks():
+    """Generate a spreadsheet-like structure with schedule tracks."""
+    return [
+        ["ID*", "Parent ID", "Description*",   "Color"],
+        ["1",   "0",         "Keynote",        "red"],
+        ["2",   "0",         "Tutorial",       "blue"],
+        ["3",   "0",         "Talk",           "black"],
+        ["4",   "0",         "Lightning Talk", "orange"]
+    ]

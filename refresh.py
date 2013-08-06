@@ -19,20 +19,25 @@ def main(argv):
     os.makedirs(OUTPUT_DIR)
 
     speakers = components.speakers.get_speakers()
-    schedule = components.schedule.speaker_names_to_ids(
-        components.schedule.get_schedule(),
-        speakers
-    )
+    tracks = components.schedule.get_tracks()
+    schedule = components.schedule.get_schedule()
+    schedule = components.schedule.speaker_names_to_ids(schedule, speakers)
+    schedule = components.schedule.track_names_to_ids(schedule, tracks)
 
-    util.spreadsheet.write_spreadsheet(
-        schedule,
-        "schedule",
-        os.path.join(OUTPUT_DIR, "schedule.xls")
-    )
     util.spreadsheet.write_spreadsheet(
         speakers,
         "speakers",
         os.path.join(OUTPUT_DIR, "speakers.xls")
+    )
+    util.spreadsheet.write_spreadsheet(
+        tracks,
+        "tracks",
+        os.path.join(OUTPUT_DIR, "tracks.xls")
+    )
+    util.spreadsheet.write_spreadsheet(
+        schedule,
+        "schedule",
+        os.path.join(OUTPUT_DIR, "schedule.xls")
     )
 
 

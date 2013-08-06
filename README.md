@@ -20,7 +20,6 @@ Run `refresh.py`, and upload the files found in the new `out` directory.
 TODO
 ----
 * Get sponsors imported.
-* Associate schedule slots with tracks (keynote, talk, tutorial...).
 * Get "static" info such as track and sponsor level colour associations.
 
 
